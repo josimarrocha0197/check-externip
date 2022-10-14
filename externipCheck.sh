@@ -13,7 +13,7 @@ logFile="/var/log/asterisk/externip.log"
 # Obtém o valor setado no parâmetro externip e armazena na variável
 externIp=$(grep externip /etc/asterisk/sip.conf | awk -F '=' '{ print $2 }')
 
-# Obtém o IP pelo qual o Escallo está nevegando e armazena na variável
+# Obtém o IP pelo qual o Escallo está navegando e armazena na variável
 browsingIp=$(curl -s ifconfig.me)
 
 # Array com todas as redes locais do ambiente [Formato: 'IP_de_rede/Máscara', ou só o IP caso queira especificar somente o host, separados por vírgula)
@@ -97,7 +97,7 @@ function checkExternIp (){
 
 			# Escreve no arquivo de log
 			echo -e "$(date) - O valor setado para o parâmetro está em desacordo com o IP de navegação" >> ${logFile}
-			echo -e "$(date) - Nevegação: ${browsingIp}  |  Parâmetro: ${externIp}"  >> ${logFile}
+			echo -e "$(date) - Navegação: ${browsingIp}  |  Parâmetro: ${externIp}"  >> ${logFile}
 
 			# Substitui o valor atribuído ao parâmetro "externip"
                         sed -i "s/${externIp}/${browsingIp}/" /etc/asterisk/sip.conf
@@ -116,7 +116,7 @@ function checkExternIp (){
 
 			# Escreve no arquivo de log
 			echo -e "$(date) - O valor setado para o parâmetro está condizente com o IP de navegação. Nenhuma alteração realizada" >> ${logFile}
-			echo -e "$(date) - Nevegação: ${browsingIp}  |  Parâmetro: ${externIp}"  >> ${logFile}
+			echo -e "$(date) - Navegação: ${browsingIp}  |  Parâmetro: ${externIp}"  >> ${logFile}
 			
 			# Encerra a execução do script
                         exit
