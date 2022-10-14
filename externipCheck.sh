@@ -36,7 +36,7 @@ function separator {
 # Restarta o módulo SIP no Asterisk
 #
 function sipReload (){
-        
+    sleep 3    
 	asterisk -rx 'sip reload'
 }
 
